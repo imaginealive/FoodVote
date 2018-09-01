@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CreatshopPage page.
@@ -21,5 +22,7 @@ export class CreatshopPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatshopPage');
   }
-
+home(){
+  this.navCtrl.push(HomePage);
+}
 }
