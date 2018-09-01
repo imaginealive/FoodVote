@@ -1,20 +1,20 @@
-﻿using System;
+﻿using api.Dac.Contract;
+using api.Model;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Authentication;
 using System.Threading.Tasks;
-using api.Dac.Contract;
-using api.Model;
-using MongoDB.Driver;
 
 namespace api.Dac
 {
-    public class AccountDac : IAccountDac
+    public class PollDac : IPollDac
     {
-        IMongoCollection<Account> Collection { get; set; }
+        IMongoCollection<Poll> Collection { get; set; }
 
-        public AccountDac(DatabaseConfigurations config)
+        public PollDac(DatabaseConfigurations config)
         {
             var settings = MongoClientSettings.FromUrl(new MongoUrl(config.MongoDBConnection));
             settings.SslSettings = new SslSettings()
@@ -23,22 +23,22 @@ namespace api.Dac
             };
             var mongoClient = new MongoClient(settings);
             var database = mongoClient.GetDatabase(config.DatabaseName);
-            Collection = database.GetCollection<Account>("Account");
+            Collection = database.GetCollection<Poll>("Poll");
         }
 
-        public void Create(Account document)
+        public void Create(Poll document)
         {
             Collection.InsertOne(document);
         }
 
-        public Account Get(Expression<Func<Account, bool>> expression)
+        public Poll Get(Expression<Func<Poll, bool>> expression)
         {
             return Collection.Find(expression).FirstOrDefault();
         }
 
-        public IEnumerable<Account> List(Expression<Func<Account, bool>> expression)
+        public void Update(Poll document)
         {
-            return Collection.Find(expression).ToList();
+            Collection.ReplaceOne(it => it.Id == document.Id, document);
         }
     }
 }
