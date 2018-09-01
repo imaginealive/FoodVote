@@ -11,8 +11,10 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ShopPage } from '../pages/shop/shop';
 import { LoginPage } from '../pages/login/login';
-import { UserserviceProvider } from '../providers/userservice/userservice';
+import { UserserviceProvider } from '../providers/userservice';
+import { SharedserviceProvider } from '../providers/sharedservice';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { UserserviceProvider } from '../providers/userservice/userservice';
     ContactPage,
     HomePage,
     TabsPage,
+    ShopPage,
     LoginPage
   ],
   imports: [
@@ -35,13 +38,15 @@ import { UserserviceProvider } from '../providers/userservice/userservice';
     ContactPage,
     HomePage,
     TabsPage,
+    ShopPage,
     LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserserviceProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}, 
+    UserserviceProvider,
+    SharedserviceProvider
   ]
 })
 export class AppModule {}

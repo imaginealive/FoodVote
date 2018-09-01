@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
-import { UserserviceProvider } from '../../providers/userservice/userservice';
+import { SharedserviceProvider } from '../../providers/sharedservice';
+import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the LoginPage page.
  *
@@ -19,11 +20,12 @@ import { UserserviceProvider } from '../../providers/userservice/userservice';
 export class LoginPage {
   username : string;
   login(){
-    this.userservice.Username = this.username;
-    this.navCtrl.setRoot(HomePage);
+    if(this.username == '' || this.username == null) return;
+    this.sharedservice.login(this.username);
+    this.navCtrl.setRoot(TabsPage);
     this.navCtrl.popToRoot();
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userservice: UserserviceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sharedservice: SharedserviceProvider) {
   }
 
   ionViewDidLoad() {
