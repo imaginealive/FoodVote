@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {
-  FormGroup,
-  FormControl
-
-} from '@angular/forms';
+import { FormGroup,FormControl} from '@angular/forms';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -22,6 +19,10 @@ export class HomePage {
   doSubmit(event) {
     console.log('Submitting form', this.langForm.value);
     event.preventDefault();
+  }
+
+  goLoginPage(){
+    this.navCtrl.push(LoginPage)
   }
 
 }
