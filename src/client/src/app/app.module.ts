@@ -2,6 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -11,6 +12,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopPage } from '../pages/shop/shop';
+import { LoginPage } from '../pages/login/login';
+import { UserserviceProvider } from '../providers/userservice/userservice';
 
 @NgModule({
   declarations: [
@@ -19,11 +22,13 @@ import { ShopPage } from '../pages/shop/shop';
     ContactPage,
     HomePage,
     TabsPage,
-    ShopPage
+    ShopPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,12 +37,14 @@ import { ShopPage } from '../pages/shop/shop';
     ContactPage,
     HomePage,
     TabsPage,
-    ShopPage
+    ShopPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserserviceProvider
   ]
 })
 export class AppModule {}
