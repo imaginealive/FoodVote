@@ -11,13 +11,13 @@
 
 <ion-content padding> 
   
-  <form (submit)="doSubmit($event)" [formGroup]="langForm">
+  <form>
 
           <ion-row>
             <ion-col col-9><label><h2>ร้านAAA</h2></label></ion-col><ion-col col-3><button ion-button right color="danger" (click)="goLoginPage()">ปิดโพล</button></ion-col>
           </ion-row>
           
-    <ion-list radio-group formControlName="langs">
+    <ion-list radio-group>
       <ion-item>
         <ion-label>ไม่กิน</ion-label>
         <ion-label>0</ion-label>

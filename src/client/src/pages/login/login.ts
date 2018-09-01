@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
 import { UserserviceProvider } from '../../providers/userservice';
+import { TabsPage } from '../tabs/tabs';
 /**
  * Generated class for the LoginPage page.
  *
@@ -20,7 +21,7 @@ export class LoginPage {
   username : string;
   login(){
     this.userservice.Username = this.username;
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(TabsPage);
     this.navCtrl.popToRoot();
   }
   constructor(public navCtrl: NavController, public navParams: NavParams, private userservice: UserserviceProvider) {
