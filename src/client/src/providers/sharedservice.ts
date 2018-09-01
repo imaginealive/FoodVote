@@ -16,7 +16,7 @@ export class SharedserviceProvider {
     console.log('Hello SharedserviceProvider Provider');
   }
   
-  getItems(username:string) {
+  login(username:string) {
     var acc = this.http.get('http://captainapi.azurewebsites.net/api/account/getaccount/'+ username)
     .map(res => <Account>res)
     .toPromise<Account>();

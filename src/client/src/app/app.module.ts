@@ -13,7 +13,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ShopPage } from '../pages/shop/shop';
 import { LoginPage } from '../pages/login/login';
-import { UserserviceProvider } from '../providers/userservice/userservice';
 import { UserserviceProvider } from '../providers/userservice';
 import { SharedserviceProvider } from '../providers/sharedservice';
 
