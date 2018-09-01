@@ -15,6 +15,7 @@ import { ShopPage } from '../pages/shop/shop';
 import { LoginPage } from '../pages/login/login';
 import { UserserviceProvider } from '../providers/userservice';
 import { SharedserviceProvider } from '../providers/sharedservice';
+import { CreatshopPage } from '../pages/creatshop/creatshop';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SharedserviceProvider } from '../providers/sharedservice';
     HomePage,
     TabsPage,
     ShopPage,
-    LoginPage
+    LoginPage,
+    CreatshopPage
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,8 @@ import { SharedserviceProvider } from '../providers/sharedservice';
     HomePage,
     TabsPage,
     ShopPage,
-    LoginPage
+    LoginPage,
+    CreatshopPage
   ],
   providers: [
     StatusBar,

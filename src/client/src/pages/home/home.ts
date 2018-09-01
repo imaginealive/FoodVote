@@ -13,7 +13,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController) {
     this.langForm = new FormGroup({
-      "langs": new FormControl({value: 'rust', disabled: false})
+      "langs": new FormControl({value: '', disabled: false})
     });
   }
   doSubmit(event) {

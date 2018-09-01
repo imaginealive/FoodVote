@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { HomePage } from '../home/home';
 
 /**
- * Generated class for the CreatshopPage page.
+ * Generated class for the Home2Page page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,18 +10,16 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-creatshop',
-  templateUrl: 'creatshop.html',
+  selector: 'page-home2',
+  templateUrl: 'home2.html',
 })
-export class CreatshopPage {
+export class Home2Page {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CreatshopPage');
+    console.log('ionViewDidLoad Home2Page');
   }
-home(){
-  this.navCtrl.push(HomePage);
-}
+
 }

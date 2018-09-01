@@ -48,11 +48,19 @@
         <ion-label>2</ion-label>
         <ion-radio value="clojure"></ion-radio>
       </ion-item>
-      <ion-item>
+      <br>
+      <ion-row><ion-col col-9>
+        <ion-item>
           <ion-label color="primary" floating>เพิ่มรายการ</ion-label>
-          <ion-input type="text" class="form-control" id="addlist" [(ngModel)]="addlist" name="addlist"></ion-input>
-      </ion-item>
-      <button ion-button right color="blue">OK</button>
+          <ion-input ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <button ion-button right color="blue">เพิ่ม</button>
+      </ion-col>
+    </ion-row>
+      
+      <br>
     </ion-list>
   </form>
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ShopPage } from '../shop/shop';
+import { CreatshopPage } from '../creatshop/creatshop';
 
 @Component({
   selector: 'page-about',
@@ -12,8 +12,8 @@ export class AboutPage {
 
   }
 
-list(){
-  this.navCtrl.push(ShopPage);
+Createshop(){
+  this.navCtrl.push(CreatshopPage);
 }
 
 }
