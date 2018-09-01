@@ -50,4 +50,10 @@ export class SharedserviceProvider {
     var username = this.userservice.Username;
     return this.http.get('http://captainapi.azurewebsites.net/api/poll/Close/'+ username).toPromise();
   }
+
+  getSubmitPoll(){
+    return this.http.get('http://captainapi.azurewebsites.net/api/poll/getsubmitpoll')
+    .map(res => <PollInfo>res)
+    .toPromise<PollInfo>();
+  }
 }

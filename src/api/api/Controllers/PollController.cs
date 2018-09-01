@@ -163,9 +163,9 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<PollInfo> GetReustPoll()
+        public ActionResult<PollInfo> GetSubmitPoll()
         {
-            return (PollInfo)pollDac.Get(it => it.IsClose == true);
+            return pollDac.GetSubmit(it => it.IsClose == true);
         }
     }
 }

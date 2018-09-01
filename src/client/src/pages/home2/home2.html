@@ -13,12 +13,13 @@
 </ion-header>
 
 
-<ion-content padding>
-  <br/>ร้านออ ออ (ปิดโหวตแล้ว)
+<ion-content padding >
+  <div *ngIf="havePoll">
+  <br/>{{poll.shopName}}
 <br><br>
 <ion-list>
     
-  <ion-item><ion-label col-10>ไม่สั่ง</ion-label> <ion-label col-2> 5</ion-label> </ion-item>
+  <ion-item><ion-label col-10>ไม่สั่ง</ion-label> <ion-label col-2> {{poll.unvoter.length}}</ion-label> </ion-item>
   
 </ion-list>
 
@@ -26,7 +27,7 @@
     <ion-list-header>
       Manu default
     </ion-list-header>
-    <ion-item><ion-label col-10>ขนมจีนกะทิ</ion-label> <ion-label col-2> 3</ion-label> </ion-item>
+    <ion-item><ion-label col-10>{{foodname}}</ion-label> <ion-label col-2> {{poll.unvoter.length}}</ion-label> </ion-item>
     
   </ion-list>
 
@@ -36,12 +37,9 @@
     <ion-list-header>
       รายการที่สั่ง
     </ion-list-header>
-    <ion-item><ion-label col-10>แกงเขียวหวาน</ion-label> <ion-label col-2> 3</ion-label> </ion-item>
-    <ion-item><ion-label col-10>ปอเปี้ย</ion-label> <ion-label col-2> 5</ion-label> </ion-item>
-    <ion-item><ion-label col-10>ผัดกะเพรา</ion-label> <ion-label col-2> 10</ion-label> </ion-item>
-    <ion-item><ion-label col-10>ข้าวไข่ดาว</ion-label> <ion-label col-2> 1</ion-label> </ion-item>
+    <ion-item *ngFor="let item of poll.menus"><ion-label col-10>{{item.menuName}}</ion-label> <ion-label col-2> {{item.voter.length}}</ion-label> </ion-item>
     
   </ion-list>
-
+</div>
 
 </ion-content>

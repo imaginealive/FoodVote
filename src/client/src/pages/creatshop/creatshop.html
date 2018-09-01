@@ -15,7 +15,7 @@
 
 <ion-content padding>
   
-    
+  <form (ngSubmit)="onSubmit()" #itemForm="ngForm"> 
   <ion-list>
 
     <ion-item>
@@ -30,8 +30,8 @@
 
   </ion-list>
 
-  <button ion-button (click)="Homepage()">Create</button>
+  <button ion-button type="submit">Create</button>
 
-
+</form>
 
 </ion-content>

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SharedserviceProvider } from '../../providers/sharedservice';
+import { PollInfo } from '../../app/model';
 
 /**
  * Generated class for the Home2Page page.
@@ -15,11 +17,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class Home2Page {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  poll: PollInfo = new PollInfo("","","", new Date, false, null, []);
+  havePoll: boolean = false;
+  foodname: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sharedService: SharedserviceProvider) {
+    this.sharedService.getSubmitPoll().then((data) =>{
+      if(data != null) {
+      this.poll = data;
+      this.havePoll = this.poll != null;
+      this.foodname = this.poll.menus[0].menuName;
+      }
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Home2Page');
   }
 
 }

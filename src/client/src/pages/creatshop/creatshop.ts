@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { PollRequest } from '../../app/model';
 import { SharedserviceProvider } from '../../providers/sharedservice';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the CreatshopPage page.
@@ -26,6 +27,8 @@ export class CreatshopPage {
     console.log('ionViewDidLoad CreatshopPage');
   }
   onSubmit(){
-    this.sharedService.createPoll(this.request).then((data) => {console.log(data); this.navCtrl.pop()});
+    this.sharedService.createPoll(this.request).then((data) => {console.log(data);
+      this.navCtrl.pop();
+    });
 }
 }

@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 import { SharedserviceProvider } from '../../providers/sharedservice';
 import { UserserviceProvider } from '../../providers/userservice';
 import { PollInfo, Menus } from '../../app/model';
+import { Home2Page } from '../home2/home2';
 
 @Component({
   selector: 'page-home',
@@ -61,7 +62,9 @@ export class HomePage {
   }
 
   closePoll(){
-    this.sharedService.closePoll().then(() => {});
+    this.sharedService.closePoll().then(() => {
+      this.navCtrl.push(Home2Page);
+    });
   }
 
 }
