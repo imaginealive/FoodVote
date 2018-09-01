@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PollController : ControllerBase
     {
@@ -25,10 +25,20 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult<PollInfo> GetNewestPoll()
         {
-            PollInfo poll = (PollInfo)pollDac.Get(it => it.IsClose == false);
+            var poll = pollDac.Get(it => it.IsClose == false);
+            var pollinfo = new PollInfo
+            {
+                Id = poll.Id,
+                ShopName = poll.ShopName,
+                CreateAt = poll.CreateAt,
+                CreateBy = poll.CreateBy,
+                IsClose = poll.IsClose,
+                Menus = poll.Menus,
+                Unvoter = new List<string>()
+            };
             var accounts = accDac.List(it => true);
 
-            poll.Menus.ToList().ForEach((menu) =>
+            pollinfo.Menus.ToList().ForEach((menu) =>
             {
                 if (menu.Voter != null || menu.Voter.Count != 0)
                     menu.Voter.ToList().ForEach((voter) =>
@@ -39,9 +49,9 @@ namespace api.Controllers
 
             foreach (var acc in accounts)
             {
-                poll.Unvoter.Add(acc.Username);
+                pollinfo.Unvoter.Add(acc.Username);
             }
-            return poll;
+            return pollinfo;
         }
 
         [HttpPost]

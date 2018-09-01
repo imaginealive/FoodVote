@@ -14,21 +14,24 @@
 
 
 <ion-content padding>
+  
+    <form (ngSubmit)="onSubmit()" #itemForm="ngForm"> 
   <ion-list>
 
     <ion-item>
       <ion-label floating>ชื่อร้าน</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="request.ShopName" name="shopName"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Menu default</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="request.MenuName" name="menuName"></ion-input>
     </ion-item>
 
   </ion-list>
 
-  <button ion-button (click)="home()">Create</button>
+  <button ion-button type="submit">Create</button>
+</form>
 
 
 </ion-content>

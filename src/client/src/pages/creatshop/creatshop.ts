@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { PollRequest } from '../../app/model';
+import { SharedserviceProvider } from '../../providers/sharedservice';
 
 /**
  * Generated class for the CreatshopPage page.
@@ -16,13 +18,14 @@ import { HomePage } from '../home/home';
 })
 export class CreatshopPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  request : PollRequest = new PollRequest("","","");
+  constructor(public navCtrl: NavController, public navParams: NavParams, private sharedService: SharedserviceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatshopPage');
   }
-home(){
-  this.navCtrl.push(HomePage);
+  onSubmit(){
+    this.sharedService.createPoll(this.request).then(() => this.navCtrl.pop());
 }
 }
