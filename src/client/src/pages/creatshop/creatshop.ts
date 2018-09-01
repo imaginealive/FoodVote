@@ -25,7 +25,11 @@ export class CreatshopPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreatshopPage');
   }
-  onSubmit(){
-    this.sharedService.createPoll(this.request).then(() => this.navCtrl.pop());
+  //onSubmit(){
+    //this.sharedService.createPoll(this.request).then(() => this.navCtrl.pop());
+//}
+
+Homepage(){
+  this.navCtrl.push(HomePage)
 }
 }

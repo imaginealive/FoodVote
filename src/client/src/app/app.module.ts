@@ -16,6 +16,7 @@ import { LoginPage } from '../pages/login/login';
 import { UserserviceProvider } from '../providers/userservice';
 import { SharedserviceProvider } from '../providers/sharedservice';
 import { CreatshopPage } from '../pages/creatshop/creatshop';
+import { Home2Page } from '../pages/home2/home2';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CreatshopPage } from '../pages/creatshop/creatshop';
     TabsPage,
     ShopPage,
     LoginPage,
-    CreatshopPage
+    CreatshopPage,
+    Home2Page
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,9 @@ import { CreatshopPage } from '../pages/creatshop/creatshop';
     TabsPage,
     ShopPage,
     LoginPage,
-    CreatshopPage
+    CreatshopPage,
+    Home2Page
+    
   ],
   providers: [
     StatusBar,
