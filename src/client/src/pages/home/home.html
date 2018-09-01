@@ -1,17 +1,44 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title text-center>
+      
+    </ion-title>
+    <ion-buttons right>
+      <button ion-button right color="danger" (click)="goLoginPage()">Logout</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content padding> 
+  <h2>ร้านกะเพราแล้วแต่</h2>
+  <form (submit)="doSubmit($event)" [formGroup]="langForm">
+    <ion-list radio-group formControlName="langs">
+
+      <ion-list-header>
+        Language
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>ผัดกะเพราหมูสับ</ion-label>
+        <ion-radio value="golang" checked="true"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>คะน้าหมูกรอบ</ion-label>
+        <ion-radio value="rust"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>หมูทอดกระเทียม</ion-label>
+        <ion-radio value="python"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>ข้าวผัดหมูํ</ion-label>
+        <ion-radio value="ruby"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>ข้าวไข่เจียว</ion-label>
+        <ion-radio value="clojure"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </form>
+  <button ion-button right color="danger" (click)="goLoginPage()">OK</button>
 </ion-content>
