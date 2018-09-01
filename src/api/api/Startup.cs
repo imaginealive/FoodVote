@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Dac;
 using api.Dac.Contract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace api
             var dbConfig = Configuration.GetSection(nameof(DatabaseConfigurations)).Get<DatabaseConfigurations>();
             services.AddTransient<DatabaseConfigurations>(svc => dbConfig);
             services.AddTransient<IAccountDac, AccountDac>();
+            services.AddTransient<IPollDac, PollDac>();
 
         }
 
