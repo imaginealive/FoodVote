@@ -10,6 +10,7 @@ namespace api.Dac.Contract
     public interface IAccountDac
     {
         Account Get(Expression<Func<Account, bool>> expression);
+        IEnumerable<Account> List(Expression<Func<Account, bool>> expression);
         void Create(Account document);
     }
 }
