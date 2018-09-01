@@ -13,6 +13,7 @@ namespace api.Dac
     public class PollDac : IPollDac
     {
         IMongoCollection<Poll> Collection { get; set; }
+        IMongoCollection<PollInfo> SubmitCollection { get; set; }
 
         public PollDac(DatabaseConfigurations config)
         {
@@ -24,6 +25,7 @@ namespace api.Dac
             var mongoClient = new MongoClient(settings);
             var database = mongoClient.GetDatabase(config.DatabaseName);
             Collection = database.GetCollection<Poll>("Poll");
+            SubmitCollection = database.GetCollection<PollInfo>("SubmitPoll");
         }
 
         public void Create(Poll document)
@@ -39,6 +41,16 @@ namespace api.Dac
         public void Update(Poll document)
         {
             Collection.ReplaceOne(it => it.Id == document.Id, document);
+        }
+
+        public void SubmitPoll(PollInfo document)
+        {
+            SubmitCollection.InsertOne(document);
+        }
+
+        public PollInfo GetSubmit(Expression<Func<PollInfo, bool>> expression)
+        {
+            return SubmitCollection.Find(expression).FirstOrDefault();
         }
     }
 }

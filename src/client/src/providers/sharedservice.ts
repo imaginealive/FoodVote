@@ -29,10 +29,25 @@ export class SharedserviceProvider {
     .toPromise<PollInfo>();
   }
 
-  createPoll(request: PollRequest): Promise<any>{
+  vote(menuId: string){
+    var options = { "headers": { "Content-Type": "application/json" } };
+    var request = { "Username": this.userservice.Username, "FoodId": menuId }
+    return this.http.post('http://captainapi.azurewebsites.net/api/poll/vote', request, options).toPromise();
+  }
+
+  addNewMenu(menu: string){
+    return this.http.get('http://captainapi.azurewebsites.net/api/poll/UpdatePoll/'+ menu).toPromise();
+  }
+
+  createPoll(request: PollRequest)  {
     var options = { "headers": { "Content-Type": "application/json" } };
     request.CreateBy = this.userservice.Username;
     console.log(request);
     return this.http.post('http://captainapi.azurewebsites.net/api/poll/createpoll', request, options).toPromise();
+  }
+
+  closePoll(){
+    var username = this.userservice.Username;
+    return this.http.get('http://captainapi.azurewebsites.net/api/poll/Close/'+ username).toPromise();
   }
 }

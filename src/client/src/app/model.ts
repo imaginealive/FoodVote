@@ -17,8 +17,8 @@ export class PollRequest {
 export class PollInfo {
     constructor(
         public id: string,
-        public ShopName: string,
-        public CreateBy: string,
+        public shopName: string,
+        public createBy: string,
         public createAt: Date,
         public isClose: boolean,
         public menus: Menus[],

@@ -12,5 +12,7 @@ namespace api.Dac.Contract
         Poll Get(Expression<Func<Poll, bool>> expression);
         void Create(Poll document);
         void Update(Poll document);
+        PollInfo GetSubmit(Expression<Func<PollInfo, bool>> expression);
+        void SubmitPoll(PollInfo document);
     }
 }

@@ -12,57 +12,29 @@
 <ion-content padding> 
   
   <form>
-
           <ion-row>
-            <ion-col col-9><label><h2>ร้านAAA</h2></label></ion-col><ion-col col-3><button ion-button right color="danger" (click)="goLoginPage()">ปิดโพล</button></ion-col>
+            <ion-label><h2>{{poll.shopName}} <span *ngIf="havePoll">ยังไม่ได้โหวต {{poll.unvoter.length}} คน</span></h2></ion-label>
           </ion-row>
-          
-    <ion-list radio-group>
-      <ion-item>
-        <ion-label>ไม่กิน</ion-label>
-        <ion-label>0</ion-label>
-        <ion-radio value="golang" checked="true"></ion-radio>
+    <ion-list radio-group *ngIf="havePoll">
+      <ion-item *ngFor="let item of poll.menus">
+        <ion-label>{{item.menuName}}</ion-label>
+        <ion-label>{{item.voter.length}}</ion-label>
+        <ion-label *ngIf="item.isDefault">Default</ion-label>
+        <ion-label *ngIf="!item.isDefault"></ion-label>
+        <ion-radio value="{{item.id}}" checked="{{voteId == item.id}}" (click)="vote(item.id)"></ion-radio>
       </ion-item>
-      <ion-item>
-        <ion-label>ผัดกะเพราหมูสับ</ion-label>
-        <ion-label>12</ion-label>
-        <ion-radio value="golang" checked="true"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>คะน้าหมูกรอบ</ion-label>
-        <ion-label>1</ion-label>
-        <ion-radio value="rust"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>หมูทอดกระเทียม</ion-label>
-        <ion-label>5</ion-label>
-        <ion-radio value="python"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>ข้าวผัดหมูํ</ion-label>
-        <ion-label>3</ion-label>
-        <ion-radio value="ruby"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>ข้าวไข่เจียว</ion-label>
-        <ion-label>2</ion-label>
-        <ion-radio value="clojure"></ion-radio>
-      </ion-item>
-      <br>
-      <ion-row><ion-col col-9>
         <ion-item>
           <ion-label color="primary" floating>เพิ่มรายการ</ion-label>
-          <ion-input ></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <button ion-button right color="blue">เพิ่ม</button>
-      </ion-col>
-    </ion-row>
-      
-      <br>
+          <ion-input [(ngModel)]="newFood" name="newFood"></ion-input>
+          <ion-icon item-right name="add-circle" (click)="AddNewFood()" color="primary"></ion-icon>
+      </ion-item><br>
+      <button ion-button right color="blue" (click)="voteSubmit()">โหวต</button>
+      <br/>
+      <ion-item>
+          <ion-label>คนดูแล poll : {{poll.createBy}}</ion-label>
+      </ion-item>
+      <button ion-button right color="danger" (click)="closePoll()" *ngIf="closeEnable">ปิดโพล</button>
     </ion-list>
   </form>
 
-  <button ion-button right color="blue" (click)="goLoginPage()">OK</button>
 </ion-content>

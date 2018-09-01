@@ -26,6 +26,7 @@ namespace api.Controllers
         public ActionResult<PollInfo> GetNewestPoll()
         {
             var poll = pollDac.Get(it => it.IsClose == false);
+            if (poll == null) return null;
             var pollinfo = new PollInfo
             {
                 Id = poll.Id,
@@ -55,7 +56,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> CreatePoll([FromBody] PollRequest request)
+        public ActionResult CreatePoll([FromBody] PollRequest request)
         {
             var poll = pollDac.Get(it => it.IsClose == false);
             if (poll == null)
@@ -80,12 +81,11 @@ namespace api.Controllers
                 };
 
                 pollDac.Create(newPoll);
-                return "complete";
             }
-            return "fail";
+            return Ok();
         }
 
-        [HttpGet("menu")]
+        [HttpGet("{menu}")]
         public ActionResult UpdatePoll(string menu)
         {
             var poll = pollDac.Get(it => it.IsClose == false);
@@ -120,7 +120,7 @@ namespace api.Controllers
         [HttpGet("{username}")]
         public ActionResult Close(string username)
         {
-            var poll = (PollInfo)pollDac.Get(it => it.IsClose == false);
+            var poll = pollDac.Get(it => it.IsClose == false);
             if (poll != null)
             {
                 poll.IsClose = poll.CreateBy == username ? true : false;
@@ -129,32 +129,43 @@ namespace api.Controllers
 
                 if (!poll.IsClose) return Ok();
 
-                //var accounts = accDac.List(it => true);
+                var pollinfo = new PollInfo
+                {
+                    Id = poll.Id,
+                    ShopName = poll.ShopName,
+                    CreateAt = poll.CreateAt,
+                    CreateBy = poll.CreateBy,
+                    IsClose = poll.IsClose,
+                    Menus = poll.Menus,
+                    Unvoter = new List<string>()
+                };
 
-                //poll.Menus.ToList().ForEach((menu) =>
-                //{
-                //    if (menu.Voter != null || menu.Voter.Count != 0)
-                //        menu.Voter.ToList().ForEach((voter) =>
-                //        {
-                //            accounts = accounts.Where(acc => acc.Username != voter);
-                //        });
-                //});
+                var accounts = accDac.List(it => true);
 
-                //foreach (var acc in accounts)
-                //{
-                //    poll.Unvoter.Add(acc.Username);
-                //}
+                pollinfo.Menus.ToList().ForEach((menu) =>
+                {
+                    if (menu.Voter != null || menu.Voter.Count != 0)
+                        menu.Voter.ToList().ForEach((voter) =>
+                        {
+                            accounts = accounts.Where(acc => acc.Username != voter);
+                        });
+                });
 
-                //pollDac.Update(poll);
+                foreach (var acc in accounts)
+                {
+                    pollinfo.Unvoter.Add(acc.Username);
+                }
+
+                pollDac.SubmitPoll(pollinfo);
             }
 
             return Ok();
         }
 
-        //[HttpGet]
-        //public ActionResult<Poll> GetReustPoll()
-        //{
-        //    return (PollInfo)pollDac.Get(it => it.IsClose == true);
-        //}
+        [HttpGet]
+        public ActionResult<PollInfo> GetReustPoll()
+        {
+            return (PollInfo)pollDac.Get(it => it.IsClose == true);
+        }
     }
 }
