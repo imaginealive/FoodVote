@@ -13,17 +13,18 @@
 
 
 <ion-content padding>
-  <form #itemForm="ngForm">  
-    <ion-list>     
+
+  <form #itemForm="ngForm">
+    <ion-list><br>
       <ion-row class="myphoto">
-        <ion-img width="80" height="80" src="https://trello-attachments.s3.amazonaws.com/5b89f629bd1c7d6b39ba3035/5b8a0a33c7ff8e85efdbc7a1/d50f0271808a3483d059af4b1107581e/Asset_1.png"></ion-img>
-    </ion-row>
+        <ion-img width="200" height="200" src="https://trello-attachments.s3.amazonaws.com/5b89f629bd1c7d6b39ba3035/5b8a0a33c7ff8e85efdbc7a1/d50f0271808a3483d059af4b1107581e/Asset_1.png"></ion-img>
+      </ion-row>
       <ion-item>
-          <ion-label color="primary" floating>Username</ion-label>
-          <ion-input type="text" class="form-control" id="username" [(ngModel)]="username" name="username"></ion-input>
-        </ion-item>
-    </ion-list>               
-        <button ion-button round (click)="login()">เข้าสู่ระบบ</button>
-</form>
+        <ion-label color="primary" floating>Username</ion-label><br><br><br><br>
+        <ion-input type="text" class="form-control" id="username" [(ngModel)]="username" name="username"></ion-input>
+      </ion-item>
+    </ion-list>
+    <br> <button ion-button round (click)="login()"class="myphoto">เข้าสู่ระบบ</button>
+  </form>
 
 </ion-content>
